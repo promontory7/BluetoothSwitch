@@ -209,8 +209,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 break;
             case R.id.button_switch:
-                 sendMessage("T2");
-                 break;
+                String time = ((TextView)(findViewById(R.id.edit_time))).getText().toString().trim();
+                if (time==null||time==""){
+                    Toast.makeText(MainActivity.this,"请填写延时时间",Toast.LENGTH_LONG);
+                    return;
+                }
+                Toast.makeText(MainActivity.this,"延迟"+time+"秒切换开关状态",Toast.LENGTH_SHORT);
+                sendMessage("T"+time);
+                break;
         }
     }
 }
